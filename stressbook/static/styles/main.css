@@ -1,0 +1,833 @@
+body {
+    font-family: "Poppins", sans-serif;
+  }
+
+html {
+    scroll-behavior: smooth;
+}
+/* Type Of Font Weights */
+/* Poppins Semi-Bold 600*/
+.pop_semi_bold {
+    font-weight: 600;
+}
+
+.pop_semi_bold_auto {
+    font-weight: 600;
+    display: block; /* Ensures that the elements take up the full width available and stack vertically */
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.icon-circle {
+    display: inline-flex; /* Use inline-flex to keep the icon inline but also apply flexbox properties */
+    align-items: center; /* Vertically center the icon */
+    justify-content: center; /* Horizontally center the icon */
+    border-radius: 50%; /* Create a circular shape */
+    background-color: #A5784C; /* Circle background color, change as needed */
+    color: #EFEFEF; /* Icon color, change as needed */
+    width: 40px; /* Circle size, adjust as needed */
+    height: 40px; /* Circle size, adjust as needed */
+    padding: 10px; /* Adjust padding to scale the icon inside the circle */
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.pop_bold{
+    font-size: 24px;
+    font-weight:650;
+    color:#F0972D;
+}
+
+.pop_normal{
+    font-size: 16px;
+    font-weight:400;
+}
+
+.pop_semi_bold_colored{
+    font-size: 16px;
+    font-weight:600;
+    color:#A86310;
+}
+
+.pop_italic{
+    font-size: 16px;
+    font-weight:400;
+    font-style: italic;
+}
+
+/* Nav Bar Section*/
+.logo_size{
+    width:190px;
+    height:90px;
+}
+
+.nav-link {
+    margin-left:40px;
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-link:hover,
+.nav-link:focus{
+    color: #A5784C !important;
+    border-bottom-color: #A5784C;
+}
+
+.nav-link.active {
+    border-bottom-color: #A5784C;
+}
+
+.nav-content-height{
+    height:30px;
+    margin-top:10px;
+    font-size: 14px;
+    color:black;
+}
+
+.event-details-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    text-decoration: none;
+    background: 0 0;
+    border: 0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    margin-left:40px;
+    border-bottom: .25rem solid transparent;
+}
+
+.event-details-link:hover,
+.event-details-link:focus{
+    color: #F0972D !important;
+    border-bottom-color: #F0972D;
+}
+
+.event-details-link.active {
+    border-bottom-color: #F0972D;
+}
+.cart_icon_wrapper{
+    position: relative;
+}
+
+.cart_icon_number{
+    position: absolute;
+    background: #A86310;
+    color: #fff;
+    top:4px;
+    font-weight: 600;
+    right: -5px;
+    text-align: center;
+    border: 3px solid #A86310;
+    font-size: 12px;
+    min-width: 18px;
+    line-height: 14px;
+    border-radius: 50%;
+}
+
+/* Mobile Navbar, When user click on the icon, the whole screen become white */
+.modal-fullscreen .modal-dialog {
+    max-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: 100000;
+}
+
+.nav-mobile-link{
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-mobile-link:hover,
+.nav-mobile-link:focus{
+    color: #A5784C !important;
+    border-bottom-color: #A5784C;
+}
+
+.nav-mobile-link.active {
+    border-bottom-color: #A5784C;
+}
+
+.nav-mobile-content-height{
+    margin-top:32px;
+    margin-right:50px;
+    font-size: 25px;
+    color:black;
+    text-decoration:none;
+}
+
+ /* Small devices (landscape phones, 576px and up) */
+@media (min-width: 767px) {
+    /* Nav bar Section*/
+    /* .modal-backdrop { 
+        display: none !important;
+    } */
+    #exampleModal {
+        display: none !important;
+    }
+    .modal-dialog.modal-mobile-nav-bar {
+        display: none !important;
+    }
+    /* End Of Navbar Section */
+}
+/* End Of Nav Bar */
+
+/* Footer Sections */
+svg {
+    fill: #ffffff;
+}
+
+footer {
+    background-color: #936E48;
+    height:80px;
+}
+
+footer div span{
+    color:#ffffff;
+    font-size: 14px;
+}
+
+/* Vertical Line also known as Vertical Ruler in bootstrap 5*/
+.vr{
+    margin-left:28px;
+    margin-right:28px;
+    opacity:1;
+}
+
+.footer_mobile_padding{
+    padding-left:20px;
+    padding-top: 20px;
+}
+
+/* End Of Footer Section */
+
+/* Home Page */
+.get-started-btn{
+    background-color:#246A82; 
+    border-radius: 50%;
+    /* height: 44px; */
+    width:200px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight:300;
+}
+
+.get-started-btn:hover{
+    background-color:#246A82; 
+}
+
+.home_caption{
+    font-size:46px;
+    height:69px;
+    text-align: center;
+}
+
+.bg-image p {
+    font-size: 18px;
+    font-weight:300;
+}
+
+.home_service .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+.home_service .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+.product_image{
+    width: 304px;
+    height: 278px;
+}
+.cart-image{
+    width: 115px;
+    height: 115px;
+    border-radius: 10%; /* Fully rounded corners for a circular image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Custom shadow */
+}
+
+.delete-image{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
+.custom-col {
+    max-width: 125px; /* Slightly more than the image size to account for padding/margin */
+}
+.custom-col-trash {
+    max-width: 40px;
+}
+.product-title{
+    font-size: 18px;
+    color:black;
+    text-decoration: none;
+    /* margin-bottom:10px; */
+}
+
+.product-price {
+    color:#D2811E;
+    font-weight: 700;
+    font-size:20px;
+    padding-top:10px;
+}
+
+.home-card{
+/* top right bottom left */
+    padding:41px 30px 50px 30px;
+}
+.home-icons{
+    color:#F0972D;
+}
+
+.under-home-icons-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top:28px;
+    margin-bottom:16px;
+}
+
+.under-home-icons-content-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.button-section {
+    flex: 1; /* Takes up 1 part of the flex container */
+}
+
+.content-section {
+    flex: 2; /* Takes up 2 parts of the flex container, making it larger than the button section */
+}
+.option-btn-size {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: #A5784C;
+    padding: 5px 10px;
+    font-size: 16px;
+    width: auto;
+}
+.option-btn-size:hover {
+    background-color: #965A38; 
+    color: white;
+}
+.option-btn-size-unclicked{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: black;
+    border: 1px solid #ccc;
+    width:auto;
+}
+.option-btn-size-unclicked:hover {
+    background-color: #f2f2f2;
+    color: black; 
+}
+
+#generalInfo {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.contact_us_input_sec{
+    width:456px;
+}
+.home_contact_us_input{
+    width:435px;
+    border-radius:30px;
+    background-color:#F0F0F0;
+    color:rgba(103, 103, 103, 0.6);
+    font-weight:300;
+    border-color: #CFCFCF;
+    margin-bottom:16px;
+}
+
+/* End Of Home Page */
+
+.custom_text_box_label {
+    color:black;
+    font-size: 14px;
+    font-weight:400px;
+}
+.custom_text_box{
+    border-color: #CFCFCF;
+    font-size:14px;
+    color:#B0ADAD;
+    font-weight:400;
+    border-radius:0;
+    width:400px;
+}
+
+.product-back-btn{
+    font-weight:700;
+    font-size:14px;
+    color: #A86310;
+    border-color: #A86310;
+    border-radius: 5px;
+    width:131px;
+    height:38px;
+    margin-left:97px;
+    margin-top:20px;
+}
+
+.add-to-cart-btn{
+    font-weight:700;
+    font-size:14px;
+    color:#FFFFFF;
+    background-color: #A86310;
+    border-radius: 5px;
+    width:200px;
+    height:40px;
+    margin-top:6px;
+    margin-left:18px;
+}
+
+.product-text-pos{
+    padding-left:25px;
+    margin-top:20px;
+    padding-right:60px
+}
+
+/* My Account Page */
+.my-acc-pills-section{
+    margin-right:50px;
+
+}
+.my-acc-mobile-section-divider{
+    display:none;
+}
+.my-acc-edit-info-section{
+    width:648px;
+    height:156px;
+}
+
+.my-acc-container{
+    width:1170px;
+}
+
+.my-acc-save-btn{
+    width:648px;
+}
+
+.admin-product-tab{
+    flex: 1 1 auto;
+    text-align: center;
+    padding:8px 16px 8px 16px;
+    
+   
+    /* background:none; */
+    border:none;
+}
+
+.admin-product-tab.active{
+    color:#FFFFFF;
+    background-color: #EF9364;
+    display:block;
+}
+
+.tab-pane.product-tab{
+    display: none;
+}
+
+.tab-pane.product-tab.active{
+    display: block;
+}
+
+.list-group-item.product-item{
+    padding-left:20px;
+}
+.product-manage-sect .list-group:hover{
+    color:none;
+}
+/* End of My Account Page */
+
+
+/* Register Page */
+.register-first-col-input{
+    width:inherit;
+    height:69px;
+    margin-bottom:20px;
+}
+
+.register-sec-col-input{
+    width:inherit;
+    height:69px;
+    margin-bottom:20px;
+    padding-left:50px;
+    padding-right:0px;
+}
+#register-wrapper{
+    width:855px;
+}
+/* End of Register Page */
+
+/* @media (min-width: 576px) { 
+    .product-back-btn{
+        margin-left:130px;
+        width:250px;
+    }
+ } */
+@media (min-width: 768px) { 
+    .product-back-btn{
+        margin-left:10px;
+    }
+}
+@media (min-width: 992px) { 
+    .product-back-btn{
+        margin-left:62px;
+    }
+}
+
+@media (min-width: 1200px) { 
+    .product-back-btn{
+        margin-left:100px;
+    }
+ }
+
+@media (min-width: 1400px) { 
+    .product-back-btn{
+        margin-left:136px;
+    }
+}
+
+@media (max-width: 1200px) { 
+
+    .my-acc-container{
+        width:100%;
+    }
+    .my-acc-edit-info-section{
+        width:100%;
+        height:100%;
+    }
+    .my-acc-pills-section{
+        margin-right:0px;
+        margin-bottom:50px;
+    }
+    .general-info-section{
+        margin-left:50px;
+    }
+    /* .list-group{
+        margin-left:50px;
+    } */
+    #v-pills-admin{
+        margin-left:50px;
+    }
+    /* .my-acc-edit-info-section-child{
+        flex-direction:column !important;
+    } */
+
+    .my-acc-email-input{
+        margin-bottom:20px;
+    }
+    .edit-profile-section{
+        order:-1;
+        margin-bottom:30px;
+    }
+    .my-acc-pills-section{
+        margin-right:0px;
+    }
+
+}
+
+@media (max-width: 992px) { 
+    /* Register Page */
+    .register-first-col-input{
+        width:350px;
+        height:69px;
+        padding-right:25px;
+        margin-bottom:20px;
+    }
+
+    .register-sec-col-input{
+        width:350px;
+        height:69px;
+        margin-bottom:20px;
+        padding-left:25px;
+        padding-right:0px;
+        margin-right:10px;
+    }
+    .custom_text_box{
+        width:350px;
+    }
+    .list-group-item.product-item{
+        margin-left:20px;
+    }
+    #v-pills-admin{
+        margin-left:0px;
+    }
+    .product-pills{
+        margin-left:20px;
+    }
+    .create-product-container{
+        margin-left:20px;
+    }
+    /* End of Register Page */
+}
+/* // X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 767px) { 
+       /* Home Page Section */
+       .home_caption{
+        font-size:32px;
+    }
+    .bg-image p{
+        font-size:16px;
+    }
+    .product-text-pos{
+        text-align:center !important;
+        padding-left:40px;
+        padding-right:40px;
+    }
+    .add-to-cart-btn{
+        margin-top:20px;
+        width:100%;
+        margin-left:0px;
+    }
+    .product-back-btn{
+        margin-left:130px;
+        width:250px;
+    }
+
+    .my-acc-pills-section{
+        margin-right:0px;
+        margin-bottom:50px;
+    }
+    
+    .general-info-section{
+        justify-content: center;
+    }
+    /* .my-acc-edit-info-section-child{
+        width:100%;
+    } */
+    .my-acc-edit-info-section {
+        justify-content: center !important;
+    }
+    #my-acc-save-btn{
+        text-align: center !important;
+        width:100%;
+    }
+    .my-acc-edit-info-section{
+        width:100%;
+        height:100%;
+    } 
+    .my-acc-pills-section-wrapper{
+        flex-direction: column !important; 
+        align-items:center !important; 
+    }
+    .general-info-section{
+        margin-left:0px;
+    }
+    .upload-btn-b-box{
+        margin-right:auto!important;
+        margin-left:auto!important;
+    }
+    .row-info-section-child{
+        margin-right:auto!important;
+        margin-left:auto!important;
+    }
+    /* Register Page */
+    .register-first-col-input{
+        width:350px;
+        height:69px;
+        margin-bottom:20px;
+    }
+
+    .register-sec-col-input{
+        width:350px;
+        height:69px;
+        margin-bottom:20px;
+        padding-left:0px;
+        margin-right:0px;
+    }
+    .custom_text_box{
+        width:350px;
+    }
+    #my-acc-register-btn{
+        text-align:center !important;
+    }
+    #register-wrapper{
+        width:350px;
+    }
+  
+    /* End of Register Page */
+}
+
+@media (max-width: 575.98px) { 
+    .home_caption{
+        font-size:22px;
+        height:40px;
+    }
+    .bg-image p{
+        font-size:13px;
+    }
+    .home_contact_us_input{
+        width:300px;
+        justify-content:center !important;
+    }
+    .contact_us_header{
+        width:350px;
+    }
+    .contact_us_input_sec{
+        width:300px;
+    }
+
+    .custom_text_box{
+        width:300px;
+    }
+    .back_btn_pos{
+        text-align:center !important;
+    }
+    .product-back-btn{
+        margin-left:0px;
+        width:250px;
+    }
+    .my-acc-pills-section{
+        margin-right:0px;
+        margin-bottom:0px;
+    }
+    .my-acc-mobile-section-divider{
+        display:block;
+    }
+    #register-wrapper{
+        width:300px;
+    }
+    .product-pills{
+        margin-left:0px;
+    }
+}
+
+/* Product Details Increment and decrement button */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  .number-input {
+    display: inline-flex;
+  }
+  
+  .number-input button {
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin:auto;
+  }
+  
+  .number-input button:after {
+    display: inline-block;
+    position: absolute;
+    font-family: "Font Awesome 6 Free"; 
+    font-weight: 900;
+    content: '\f068';
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  .number-input button.plus:after {
+    content:"\2b";
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  
+  .number-input input[type=number] {
+    background-color:#EEEEEE;
+    width: 40px;
+    padding: .5rem;
+    border: solid #ddd;
+    border-width: 0;
+    font-size: 16px;
+    height: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+.my-acc-pills{
+    width:250px;
+    height:46px;
+    border:0px;
+    text-align:left !important;
+    background-color: #FFFFFF;
+    font-size:14px;
+}
+
+.my-acc-pills.active{
+    color:#FFFFFF;
+    background-color:#936E48;
+    border-color: #936E48;
+}
+/* End Of Product Details Increment and decrement button */
+
+
+.upload-btn {
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+.remove-btn {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 50%; 
+    background-color: #A5784C; 
+    color: white; 
+    width: 40px; 
+    height: 40px; 
+    padding: 10px;
+}
+
+
+.upload-btn-b-box {
+    position: relative;
+    /* Key to make the upload button inside the box we want, life safer!!!!*/
+    overflow: hidden;
+    /* display: block; */
+    width: 200px;
+    height: 200px;
+    /* border: 2px dashed #cbcbcb; */
+    /* margin-left: 10px; */
+    color: #bdc0c5;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.edit_icon{
+    position:absolute;
+    overflow: hidden;
+    margin-left:-50px;
+    background-color:#F0972D;
+    color:white;
+    margin-top:12px;
+    box-sizing:border-box;
+    padding:10px;
+    border-radius: 50%;
+    z-index: 1;
+}

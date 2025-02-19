@@ -1,0 +1,72 @@
+{% extends "includes/base_template.html" %}
+{% block title %}StressBook {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<main class="container-fluid p-0">
+
+    <div class="bg-image d-flex flex-column justify-content-center align-items-center" style="background-image: url('/static/images/small_banner.png');height: 200px;">
+        <h1 class="text-white pop_semi_bold m-0 home_caption text-center">Register</h1>
+    </div>
+  
+    <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top:50px;margin-bottom:50px;">
+        <!-- Error Messages -->
+        {% if errors.name %}
+        <ul class="alert alert-danger">
+            {% for error in errors.password %}
+                {{ error }}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if errors.email %}
+        <ul class="alert alert-danger">
+            {% for error in errors.email %}
+                {{ error }}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if errors.password %}
+        <ul class="alert alert-danger">
+            {% for error in errors.password %}
+                {{ error }}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- Form Start -->
+        <form method="post" action="{{ url_for('register_account') }}">
+            <!-- Name -->
+            <div>
+                <label class="form-label custom_text_box_label" for="name">Name*</label>
+                <input required class="form-control custom_text_box" type="text" id="name" name="name" placeholder="Name" style="margin-bottom:20px;">
+            </div>
+            <!-- Email Address -->
+            <div>
+                <label class="form-label custom_text_box_label" for="email">Email Address*</label>
+                <input required class="form-control custom_text_box" type="email" id="email" name="email" placeholder="Email Address" style="margin-bottom:20px;">
+            </div>
+            <!-- Password -->
+            <div>
+                <div class="d-flex justify-content-between">
+                    <label class="form-label custom_text_box_label" for="password">Password*</label>
+                </div>
+                <input required class="form-control custom_text_box" type="password" id="password" name="password"
+                placeholder="Password">
+            </div>
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit"  class="btn text-white semi_bold justify-content-center" style="margin-top:30px;background-color:#F0972D;width:150px;height:38px;font-size:16px;">Sign Up</button>
+            </div>
+
+        </form>
+        <!-- End Form -->
+    </div>
+  </div>
+  </main>
+
+  {% endblock %}

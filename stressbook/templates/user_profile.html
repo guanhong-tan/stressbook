@@ -1,0 +1,168 @@
+{% extends "includes/base_template.html" %}
+{% block title %}StressBook {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<main class="container-fluid p-0">
+    <!-- bg image -->
+    <div class="bg-image d-flex flex-column justify-content-center align-items-center"
+    style="background-image: url('static/images/home_page_banner.png');height: 250px;">
+        <h1 class="text-white pop_semi_bold m-0 home_caption text-center">My Account</h1>
+    </div>
+
+    <!-- buttons -->
+    <div class="container p-0 my-acc-container" style="margin-top:50px;margin-bottom:50px;">
+        <div class="d-flex align-items-start my-acc-pills-section-wrapper">
+            <div class="nav flex-column nav-pills my-acc-pills-section" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <!-- General Information -->
+                <button class="my-acc-pills active pop_semi_bold p-0" id="v-pills-home-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                    aria-selected="true">
+                    <i class="fa-solid fa-user"
+                        style="margin-left:20px;margin-right:12px;font-size:16px;">
+                    </i>
+                        General Information
+                </button>
+                <!-- My Bookings Tab -->
+                <button class="my-acc-pills pop_semi_bold p-0" id="v-pills-bookings-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-bookings" type="button" role="tab" aria-controls="v-pills-bookings"
+                    aria-selected="false">
+                    <i class="fa-solid fa-bag-shopping"
+                        style="margin-left:20px;margin-right:12px;font-size:16px;">
+                    </i>
+                        My Bookings
+                </button>
+
+                <button class="my-acc-pills pop_semi_bold p-0" id="v-pills-settings-tab"
+                    onclick="window.location.href='/logout';" type="button" role="tab"
+                    aria-controls="v-pills-settings" aria-selected="false">
+                    <i class="fa-solid fa-arrow-right-from-bracket"
+                        style="margin-left:20px;margin-right:12px;font-size:16px;"></i>Log Out
+                </button>
+            </div>
+
+
+            <div style="height:50px;width:100%;" class="my-acc-mobile-section-divider">
+                <hr style="border:5px;border-color: #EEEEEE;border-style: solid;opacity:1;">
+            </div>
+
+            <div class="tab-content" id="v-pills-tabContent" style="width:100%;">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab" tabindex="0">
+                    <!-- Success message -->
+                    <!-- <?php if (isset($_SESSION['update_success'])): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?php echo $_SESSION['update_success']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php unset($_SESSION['update_success']); ?>
+                    <?php endif; ?> -->
+
+                    <form class="row general-info-section d-flex" action="/update_profile_details" method="post"
+                        enctype="multipart/form-data">
+
+                        <div class="col-lg-9 my-acc-edit-info-section">
+                            <div class="row d-flex align-content-start my-acc-edit-info-section-child">
+                                <!-- <div class="row-info-section-child"
+                                    style="width:inherit;height:63px;margin-bottom:20px;">
+                                    <label class="form-label custom_text_box_label" for="username">Username</label>
+                                    <input class="form-control custom_text_box" type="text" id="username"
+                                        name="username" placeholder="Enter Username"
+                                        value="{{ session.get('name', '') }}"
+                                        style="width:300px;">
+                                </div> -->
+                                <div class="row-info-section-child"
+                                    style="width:inherit;height:63px;margin-bottom:20px;">
+                                    <label class="form-label custom_text_box_label" for="name">Name</label>
+                                    <input maxlength="45" class="form-control custom_text_box" type="text" id="name"
+                                        name="name" placeholder="Name"
+                                        value="{{ session.get('name', '') }}"
+                                        style="width:300px;">
+                                </div>
+                                <div class="my-acc-email-input row-info-section-child"
+                                    style="width:inherit;height:63px;">
+                                    <label class="form-label custom_text_box_label" for="email">Email Address</label>
+                                    <input class="form-control custom_text_box my-acc-email-input" type="email"
+                                    id="email" name="email" placeholder="Email Address"
+                                    value="{{ session.get('user_email', '') }}"
+                                    style="width:300px;" readonly>
+                                </div>
+                                <!-- <div class="row-info-section-child" style="width:inherit;height:63px;">
+                                    <label class="form-label custom_text_box_label" for="pwd">Contact No</label>
+                                    <input class="form-control custom_text_box" type="number" id="contactnumber"
+                                        name="contactnumber" placeholder="Contact Number"
+                                        value="<?php echo isset($_SESSION['contactnumber']) ? htmlspecialchars($_SESSION['contactnumber']) : ''; ?>"
+                                        style="width:300px;">
+                                </div> -->
+                                <div class="row-info-section-child" class="text-start" id="my-acc-save-btn">
+                                    <button type="submit" class="btn text-white semi_bold"
+                                        style="margin-top:20px;background-color:#A5784C;width:150px;height:38px;font-size:14px;border-radius:5px;font-weight:700;">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 edit-profile-section">
+                            <div class="upload-btn-b-box">
+                            <img id="profileImagePreview1"
+                                src="/static/images/bigger_login_profile.png"
+                                style="width:200px;height:200px;">
+                                <label for="profile_pic1" style="display:none;">Upload profile picture</label>
+                                <input type="file" name="image" id="profile_pic1" accept="image/*"
+                                    class="upload-btn"
+                                    onchange="previewFile('profileImagePreview1', 'profile_pic1')"
+                                    aria-label="Upload profile picture">
+                                <i class="fa-regular fa-pen-to-square edit_icon" style="font-size: 18px;" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                
+                <!-- Booking Section Content -->
+                <div class="tab-pane fade" id="v-pills-bookings" role="tabpanel"
+                    aria-labelledby="v-pills-bookings-tab" tabindex="0">
+                    <div class="list-group">
+                        {% if bookings %}
+                            {% for booking in bookings %}
+                            <div class="list-group-item list-group-item-action d-flex gap-3 py-3 border-0">
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <h5 class="mb-2 mt-2 pop_semi_bold" style="font-size:14px;">
+                                            {{ booking.event_name }}
+                                        </h5>
+                                        <p class="mb-2 pop_semi_bold" style="color:#936E48;font-size:14px;">
+                                            {{ booking.event_location }}
+                                        </p>
+                                        <p class="mb-2 pop_semi_bold" style="font-size:14px;">
+                                           Placed On: {{ booking.timestamp | datetimeformat('%B %d, %Y') }}
+                                        </p>
+                                    </div>
+                                    <div class="align-items-end">
+
+                                        <p class="text-nowrap p-2 mb-0 mt-2 pt-0 text-end" style="font-size:12px;">
+                                            {{ booking.seat_details[0].tickets_booked }} Tickets
+                                        </p>
+                                        <p class="text-nowrap mb-0 text-end" style="font-size:12px;">Section: {{ booking.seat_details[0].section }} </p>
+                                        <p class="text-nowrap mb-0 mt-2 pop_semi_bold"
+                                            style="font-size:14px;color:#936E48;">
+                                            Total: ${{ booking.total_price }}0
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-center mt-4">No bookings found. <a href="{{ url_for('events') }}" class="text-decoration-none" style="color: #f4a01c;">Browse events</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- End Of Booking Section Content -->
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}                                       

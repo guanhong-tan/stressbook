@@ -1,0 +1,138 @@
+{% extends 'includes/base_template.html' %}
+{% block title %}
+  StressBook Dashboard
+{% endblock %}
+
+{% block head %}
+  <style>
+    .dashboard-card {
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+    
+    .section-header {
+      color: #1a237e;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #f4a01c; /* Singapore Airlines gold */
+    }
+    
+    .booking-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .booking-item h4 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .seat-details {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+    
+    .seat-info {
+      border-left: 3px solid #f4a01c;
+      padding-left: 15px;
+      margin: 10px 0;
+    }
+    
+    .seat-info p {
+      margin: 5px 0;
+    }
+    
+    .badge {
+      padding: 8px 12px;
+      font-size: 0.9em;
+    }
+    
+    .badge.bg-success {
+      background-color: #28a745 !important;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <main class="container-fluid p-0">
+    <!-- Header Banner -->
+    <div class="bg-image d-flex flex-column justify-content-center align-items-center" style="background-image: url('/static/images/small_banner.png'); height: 200px;">
+      <h1 class="text-white pop_semi_bold m-0 home_caption text-center">My Dashboard</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+      <!-- Welcome Section -->
+      <div class="dashboard-card">
+        <h2 class="section-header">Welcome, {{ session.name }}!</h2>
+        <p>Email: {{ session.user_email }}</p>
+      </div>
+
+      <!-- My Bookings Section -->
+      <div class="dashboard-card">
+        <h2 class="section-header">My Bookings</h2>
+        {% if bookings %}
+          {% for booking in bookings %}
+            <div class="booking-item">
+              <h4>{{ booking.event_name }}</h4>
+              <p>
+                <strong>Date:</strong> {{ booking.timestamp|datetimeformat('%d %b %Y, %I:%M %p') }}
+              </p>
+              <p>
+                <strong>Venue:</strong> {{ booking.event_location }}
+              </p>
+              <div class="seat-details">
+                {% for seat in booking.seat_details %}
+                  <div class="seat-info">
+                    <p>
+                      <strong>Section:</strong> {{ seat.section }}
+                    </p>
+                    <p>
+                      <strong>Number of Tickets:</strong> {{ seat.tickets_booked }}
+                    </p>
+                    <p>
+                      <strong>Price per Ticket:</strong> ${{ seat.price_per_ticket }}
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+              <p>
+                <strong>Total Price:</strong> ${{ booking.total_price }}
+              </p>
+              <p>
+                <strong>Status:</strong> <span class="badge bg-success">{{ booking.status|title }}</span>
+              </p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>
+            No bookings found. <a href="{{ url_for('events') }}" class="text-decoration-none" style="color: #f4a01c;">Browse events</a>
+          </p>
+        {% endif %}
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="dashboard-card">
+        <h2 class="section-header">Quick Actions</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <a href="{{ url_for('events') }}" class="btn btn-outline-primary w-100 mb-2">Browse Events</a>
+          </div>
+          <div class="col-md-4">
+            <a href="{{ url_for('profile') }}" class="btn btn-outline-primary w-100 mb-2">Edit Profile</a>
+          </div>
+          <div class="col-md-4">
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger w-100 mb-2">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

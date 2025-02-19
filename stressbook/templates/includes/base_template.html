@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    <!-- Font Awesome 6.5.1 -->
+    <script src="https://kit.fontawesome.com/eec58851c8.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Icons? -->
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+    <!-- Own Css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/seating_arrangement.css') }}" />
+
+    <!-- Own Javascript -->
+    <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+
+    <!-- Chartjs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <header class="d-flex justify-content-between">
+        <a href="/" class="text-decoration-none"><img class="img-fluid logo_size" src="/static/images/palworld_logo.png" alt="palworld logo" /></a>
+
+        <div class="d-flex align-content-center flex-wrap">
+          <!-- desktop and ipad navbar, Only appear md and above screens -->
+          <nav class="navbar d-md-flex d-none">
+            <a class="nav-link active p-0 nav-content-height pop_semi_bold" aria-current="page" href="/">Home</a>
+            <!-- A , B , C , D , E ,F ,G, H Seating #Easier To Do , user just need to book A,B,C,D,E,F,G,H I Hope -->
+            <a class="nav-link p-0 nav-content-height pop_semi_bold" href="/events">Events</a>
+            <!-- Movie Seating like the one in golden village harder , when got time -->
+            <!-- <a class="nav-link p-0 nav-content-height pop_semi_bold" href="/threaters" >Threaters</a> -->
+            <!-- <a class="nav-link p-0 nav-content-height pop_semi_bold" href="/dashboard">Dashboard</a> -->
+
+            {% if session.get('logged_in') %}
+              <a href="/user_profile" class="text-decoration-none p-0"><img class="img-fluid" src="/static/images/login_profile.png" alt="login_profile" width="40" height="40" style="margin-left:40px;" /></a>
+            {% else %}
+              <a class="nav-link p-0 nav-content-height pop_semi_bold" href="/login">Login</a>
+            {% endif %}
+          </nav>
+          <!-- End of Desktop and ipad Navbar -->
+
+          <!-- Mobile Navbar -->
+          <nav class="navbar d-md-none modal-mobile-nav-bar-wrapper" aria-label="Third navbar example">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:20px;" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-mobile-nav-bar">
+                  <div class="modal-content">
+                    <div class="modal-header border-0">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-top:30px;margin-right:33px;"></button>
+                    </div>
+                    <div class="d-flex flex-column align-items-end">
+                      <a href="#" class="text-decoration-none p-0" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- <?php if (isset($_SESSION['username'])): ?> -->
+                        <a href="/user_profile" class="text-decoration-none p-0"><!-- <img src="<?php echo (isset($_SESSION['profile_pic']) && !empty($_SESSION['profile_pic'])) ? htmlspecialchars($_SESSION['profile_pic']) : "/images/mobile_login_profile.png"; ?>" alt="mdo" width="64" height="64" style="margin-top:48px;margin-right:50px;margin-bottom:28px"> --></a>
+                        <!-- <?php endif; ?> -->
+                      </a>
+                      <a class="nav-mobile-link active p-0 nav-mobile-content-height pop_semi_bold" aria-current="page" href="/">Home</a>
+                      <a class="nav-mobile-link p-0 nav-mobile-content-height pop_semi_bold" href="/events">Events</a>
+                      <!-- <a class="nav-mobile-link p-0 nav-mobile-content-height pop_semi_bold" href="/dashboard">Dashboard</a>
+                      {% if session.get('logged_in') %} -->
+                        <img class="nav-mobile-link p-0 nav-mobile-content-height pop_semi_bold img-fluid" src="/static/images/login_profile.png" alt="login_profile" width="40" height="40" style="margin-left:50px;" />
+                      {% else %}
+                        <a class="nav-mobile-link p-0 nav-mobile-content-height pop_semi_bold" href="/login">Login</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <!-- End Of Mobile Navbar -->
+        </div>
+      </header>
+    </div>
+    {% block body %}
+    {% endblock %}
+    <script></script>
+    {% if session.get('logged_in') %}
+    <div id="quick-access-tab" class="quick-access-panel">
+        <!-- Tab Button -->
+        <div class="tab-button">
+            <button id="quick-access-toggle">
+                <span class="tab-text">Quick Access</span>
+                <i class="fas fa-chevron-left" id="toggle-icon"></i>
+            </button>
+        </div>
+        
+        <div class="quick-access-content">
+            <h3 class="text-center mb-4">Quick Access</h3>
+            
+            <!-- User Info -->
+            <div class="user-info mb-4">
+                <img src="/static/images/login_profile.png" alt="Profile" class="profile-img">
+                <p class="user-name">{{ session.name }}</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="quick-links">
+                <a href="{{ url_for('dashboard') }}" class="quick-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="{{ url_for('events') }}" class="quick-link">
+                    <i class="fas fa-calendar-alt"></i> Events
+                </a>
+                
+                <!-- Current Bookings -->
+                <div class="bookings-section">
+                    <h4>Current Bookings</h4>
+                    <div class="booking-list">
+                        {% for booking in current_bookings[:3] %}
+                        <div class="booking-item">
+                            <p class="event-name">{{ booking.event_name }}</p>
+                            <p class="event-date">{{ booking.timestamp | datetimeformat('%Y-%m-%d') }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Link -->
+            <a href="{{ url_for('logout') }}" class="quick-link logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <style>
+    .quick-access-panel {
+        position: fixed;
+        right: -300px;
+        top: 0;
+        width: 300px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .quick-access-panel.open {
+        right: 0;
+    }
+
+    /* Tab Button Styling */
+    .tab-button {
+        position: absolute;
+        left: -120px; /* Width of the tab + padding */
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: right center;
+    }
+
+    .tab-button button {
+        background: #f4a01c;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 10px 10px 0 0;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .tab-button button:hover {
+        background: #e59018;
+    }
+
+    .tab-text {
+        margin-right: 8px;
+    }
+
+    #toggle-icon {
+        transition: transform 0.3s;
+    }
+
+    .quick-access-panel.open #toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .quick-access-content {
+        padding: 20px;
+        height: 100%;
+        overflow-y: auto;
+        background: #fff;
+    }
+
+    .user-info {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .profile-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .user-name {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .quick-links {
+        padding: 20px 0;
+    }
+
+    .quick-link {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    .quick-link:hover {
+        background: #f8f9fa;
+        color: #f4a01c;
+        transform: translateX(5px);
+    }
+
+    .quick-link i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+    }
+
+    .bookings-section {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .booking-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: transform 0.3s;
+    }
+
+    .booking-item:hover {
+        transform: translateX(5px);
+        background: #fff;
+        border-radius: 5px;
+    }
+
+    .booking-item:last-child {
+        border-bottom: none;
+    }
+
+    .event-name {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .event-date {
+        margin: 0;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .logout {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white !important;
+        text-align: center;
+        padding: 10px !important;
+    }
+
+    .logout:hover {
+        background: #c82333;
+        color: white !important;
+        transform: translateX(0) !important;
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const quickAccessPanel = document.getElementById('quick-access-tab');
+        const toggleButton = document.getElementById('quick-access-toggle');
+
+        toggleButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            quickAccessPanel.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!quickAccessPanel.contains(event.target) && 
+                quickAccessPanel.classList.contains('open')) {
+                quickAccessPanel.classList.remove('open');
+            }
+        });
+
+        quickAccessPanel.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    });
+    </script>
+    {% endif %}
+  </body>
+</html>

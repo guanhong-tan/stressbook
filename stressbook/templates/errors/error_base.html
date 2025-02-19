@@ -1,0 +1,58 @@
+{% extends "includes/base_template.html" %}
+{% block title %}{{ error_title }} - StressBook{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1 class="display-1">{{ error_code }}</h1>
+            <h2>{{ error_title }}</h2>
+            <p class="lead">{{ error_message }}</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Return to Home</a>
+            {% if previous_url %}
+                <a href="{{ previous_url }}" class="btn btn-secondary mt-3 ms-2">Go Back</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block head %}
+<style>
+    .display-1 {
+        color: #f4a01c;  /* Singapore Airlines gold */
+        font-size: 8rem;
+        font-weight: bold;
+    }
+    
+    h2 {
+        color: #1a237e;
+        margin-bottom: 1rem;
+    }
+    
+    .lead {
+        color: #666;
+        margin-bottom: 2rem;
+    }
+    
+    .btn-primary {
+        background-color: #f4a01c;
+        border-color: #f4a01c;
+    }
+    
+    .btn-primary:hover {
+        background-color: #d88c19;
+        border-color: #d88c19;
+    }
+    
+    .btn-secondary {
+        background-color: #1a237e;
+        border-color: #1a237e;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #151b60;
+        border-color: #151b60;
+    }
+</style>
+{% endblock %} 

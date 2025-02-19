@@ -1,0 +1,303 @@
+{% extends "includes/base_template.html" %}
+{% block title %}StressBook {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<main class="container p-0">
+    <div class="row">
+        <div class="col-12">
+            <!-- Start Of Banner -->
+            <div class="bg-image d-flex flex-column justify-content-center align-items-center" style="background-image: url('/{{ event.image_url }}');height: 720px;background-size:cover;background-position: center;background-attachment: fixed;">
+            </div>
+            <!-- End Of Banner -->
+        </div>
+    </div>
+</main>
+
+<div class="container p-0">
+        <div class="row" >
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 col-12">
+                <nav class="navbar justify-content-center" style="height:80px;">
+                    <a class="event-details-link text-center" href="#eventDetails" style="margin-left:0px;">Event Details</a>
+                    <a class="event-details-link" href="#prices">Ticket Pricing</a>
+                    <a class="event-details-link" href="#faq">Exchange & Refund Policy </a>
+                    <a class="event-details-link" href="#policy">Admission Policy</a>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 d-flex justify-content-center align-items-center">
+                <a href="{{ url_for('booking_concert_seat', event_id=event._id) }}" class="btn btn-primary btn-block" style="width:100%;padding: 15px 10px;margin: 0;">Buy Tickets</a>
+            </div>
+        </div>
+
+      <!-- Event Details -->
+        <div class="row">
+            <div class="col-12">
+                <div id="eventDetails">
+                    <h1 class="text-center mt-4">{{ event.name }}</h1>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="far fa-calendar-alt me-2"></i>
+                               <span>{{ event.date }}</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span>{{ event.location }}</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas fa-ticket-alt me-2"></i>
+                            <span id="available-tickets">Available Tickets: {{ event.available_tickets }}</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas fa-chart-line me-2"></i>
+                            <span id="sold-tickets">Sold Tickets: {{ event.sold_tickets }}</span>
+                        </div>
+                        {% if event.artist %}
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas fa-microphone me-2"></i>
+                            <span>{{ event.artist }}</span>
+                        </div>
+                        {% endif %}
+                        {% if event.organizer %}
+                        <div class="d-flex align-items-center mt-3">
+                            <i class="fas fa-users me-2"></i>
+                            <span>Organized by: {{ event.organizer }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+       <!-- End Of Event Details -->
+       <!-- Event Synopsis -->
+       <div class="row">
+            <div class="col-12">
+                <div id="synopsis">
+                    <h2 class="text-center mt-4">Event Synopsis</h2>
+                    <div class="mt-4">
+                        {% if event.synopsis %}
+                            <p class="lead">{{ event.synopsis }}</p>
+                        {% else %}
+                            <p class="lead">{{ event.description }}</p>
+                        {% endif %}
+                        
+                        {% if event.highlights %}
+                        <div class="mt-4">
+                            <h4>Event Highlights</h4>
+                            <ul>
+                                {% for highlight in event.highlights %}
+                                    <li>{{ highlight }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        <div class="mt-4">
+                            <h4>Important Notes</h4>
+                            <ul>
+                                <li>Duration: {{ event.duration }}</li>
+                                <li>Age Advisory: {{ event.age_advisory }}</li>
+                                {% if event.terms_conditions %}
+                                    {% for term in event.terms_conditions %}
+                                        <li>{{ term }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Event Synopsis -->
+
+       <!-- Ticket Pricing -->
+        <div class="col-12">
+            <div id="prices">
+                <h2 class="text-center mt-4">Ticket Pricing</h2>
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ticket Type</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>VIP</td>
+                                <td>$200{{ event.vip_price }}</td>
+                            </tr>
+                            <tr>
+                                <td>Standard</td>
+                                <td>$100 - $150{{ event.standard_price }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4">
+                    <h4>Additional Information</h4>
+                    <ul>
+                        <li>All prices are in SGD and inclusive of GST</li>
+                        <li>Each transaction is limited to 4 tickets</li>
+                        <li>Tickets are non-transferable and non-refundable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Of Ticket Pricing -->
+
+        <!-- FAQ -->
+        <div class="row">
+            <div class="col-12">
+                <div id="faq">
+                    <h2 class="text-center mt-4">Frequently Asked Questions</h2>
+                    <div class="mt-4">
+                        {% for item in event.faq %}
+                            <h4>{{ item.question }}</h4>
+                            <p>{{ item.answer }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Of FAQ -->
+
+        <!-- Policy Section-->
+        <div class="col-12">
+            <div id="policy">
+                <h2 class="text-center mt-4">Event Policies</h2>
+                
+                <div class="mt-4">
+                    <h4>Security Checks And Admission Rules</h4>
+                    <ul>
+                        <li>Printed/electronic tickets must be produced for admission. Tickets must show complete details including barcode, event details, transaction number, and admission policy.</li>
+                        <li>Security checks will be conducted at designated points. Please arrive early.</li>
+                        <li>No outside food and beverages allowed.</li>
+                        <li>The following items are prohibited:
+                            <ul>
+                                <li>Cans and glass bottles</li>
+                                <li>Noise makers (air horns, whistles, etc.)</li>
+                                <li>Flags and placards with offensive slogans or advertisements</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4>Child Policy</h4>
+                    {% if event.age_advisory == 'R21' %}
+                    <ul>
+                        <li>This is an R21 event. No admission for anyone under 21 years old</li>
+                        <li>Valid ID/proof of age will be required at entry</li>
+                    </ul>
+                    {% elif event.age_advisory == 'M18' %}
+                    <ul>
+                        <li>This is an M18 event. No admission for anyone under 18 years old</li>
+                        <li>Valid ID/proof of age will be required at entry</li>
+                    </ul>
+                    {% elif event.age_advisory == 'PG-13' %}
+                    <ul>
+                        <li>This is a PG-13 event. Parental guidance is required for children under 13</li>
+                        <li>Children under 13 must be accompanied by a parent/guardian</li>
+                        <li>All attendees must purchase a ticket for entry</li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                        <li>No admission for infants and children under 12 years old</li>
+                        <li>Children 12 years and above must purchase a ticket for entry</li>
+                    </ul>
+                    {% endif %}
+
+                    <h4>Audio, Photography & Videography Policy</h4>
+                    <ul>
+                        <li>Professional photography and videography are not permitted</li>
+                        <li>The following items are not allowed:
+                            <ul>
+                                <li>Cameras and video cameras with zoom lenses</li>
+                                <li>GoPros, iPads, tablets and laptops</li>
+                                <li>Selfie sticks, gimbals, tripods and monopods</li>
+                            </ul>
+                        </li>
+                        <li>Live streaming of the event is strictly prohibited</li>
+                        <li>Taking photos or videos of cosplayers without their consent is strictly prohibited</li>
+                        <li>Upskirt photography, inappropriate touching, or harassment of any kind towards cosplayers will result in immediate removal from the event and possible legal action</li>
+                    </ul>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('events') }}" class="btn btn-secondary">Back to Events</a>
+                </div>
+            </div>
+        </div>
+        <!-- End Of Policy Section-->
+</div>
+
+
+
+<script>
+    document.querySelectorAll('nav a.event-details-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            console.log(targetElement);
+            window.scrollTo({
+                top: targetElement.offsetTop - 50,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    function updateAvailableTickets(eventId) {
+        // AJAX call to fetch available tickets
+        fetch(`/event/${eventId}/available_tickets`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch available tickets");
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+                // Update the available tickets in the DOM
+                document.getElementById("available-tickets").innerText = "Available Tickets: " + data.available_tickets;
+                document.getElementById("sold-tickets").innerText = "Sold Tickets: " + data.sold_tickets;
+            })
+            .catch(error => {
+                console.error("Error updating available tickets:", error);
+            });
+    }
+
+    // Get event ID from a hidden element or directly from the context
+    const eventId = "{{ event._id }}";
+
+    // Call the function every 2 seconds
+    setInterval(() => updateAvailableTickets(eventId), 2000);
+
+</script>
+
+<style>
+    /* Add this to your existing styles */
+    h2 {
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;  /* Width of the underline */
+        height: 3px;   /* Thickness of the underline */
+        background-color: #f4a01c;  /* Singapore Airlines gold */
+    }
+</style>
+
+{% endblock %}

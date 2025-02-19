@@ -1,0 +1,52 @@
+{% extends "includes/base_template.html" %}
+{% block title %}StressBook {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<main class="container-fluid p-0">
+
+    <div class="bg-image d-flex flex-column justify-content-center align-items-center" style="background-image: url('/static/images/small_banner.png');height: 200px;">
+        <h1 class="text-white pop_semi_bold m-0 home_caption text-center">Login</h1>
+    </div>
+  
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+  
+    <div class="d-flex flex-column justify-content-center align-items-center" style="margin-top:50px;margin-bottom:50px;">
+        <form method="post" action="{{ url_for('login_account') }}">
+            <div>
+                <label class="form-label custom_text_box_label" for="email">Email Address*</label>
+                <input required class="form-control custom_text_box" type="email" id="email" name="email" placeholder="Email Address" style="margin-bottom:20px;">
+            </div>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <label class="form-label custom_text_box_label" for="password">Password*</label>
+                    <a href="/forgotpassword" class="custom_text_box_label" style="color:#F0972D;font-style: italic;text-decoration:none;">Forgot Password?</a>
+                </div>
+                <input required class="form-control custom_text_box" type="password" id="password" name="password"
+                placeholder="Password">
+            </div>
+            <div class="text-center">
+                <button type="submit"  class="btn text-white semi_bold justify-content-center" style="margin-top:30px;background-color:#F0972D;width:150px;height:38px;font-size:16px;">Sign In</button>
+            </div>
+        </form>
+        <p style="margin-top:12px;font-size:14px;">Don’t have an account?<a class="pop_semi_bold" href="/register" style="text-decoration:none;color:#F0972D;"> Register here</a></p>
+    </div>
+  </div>
+  </main>
+
+  {% endblock %}

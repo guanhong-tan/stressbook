@@ -1,0 +1,53 @@
+{% extends "includes/base_template.html" %}
+{% block title %}StressBook {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <!-- Events Section-->
+    <div class="row align-items-md-stretch">
+        <div class="col-12 mb-2 mt-4">
+            <h3>Events</h3>
+        </div>
+        {% for event in events %}
+        <div class="col-lg-4 col-md-6 mt-2 mb-2" style="height:342px;">
+            <a href="{{ url_for('event_detail', event_id=event._id) }}" class="event-link">
+                <div class="h-100 p-5 text-white rounded-3 event-card" style="background-image: url('{{ event.image_url }}'); background-size: cover; background-position: center; transition: transform 0.3s ease;">
+                    <div class="event-overlay">
+                        <h4>{{ event.name }}</h4>
+                        <p>{{ event.date | datetimeformat('%Y-%m-%d %H:%M') }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        .event-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .event-card:hover {
+            transform: scale(1.05);
+        }
+        .event-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .event-card:hover .event-overlay {
+            opacity: 1;
+        }
+        .event-link {
+            text-decoration: none;
+        }
+    </style>
+</div>
+{% endblock %}

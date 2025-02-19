@@ -1,0 +1,41 @@
+{% extends 'includes/base_template.html' %}
+{% block title %}Confirm Booking{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Booking Confirmation</h2>
+                </div>
+                <div class="card-body">
+
+                    <h3>{{ event.name }}</h3>
+                    <p><strong>Date:</strong> {{ event.date | datetimeformat('%Y-%m-%d %H:%M') }}</p>
+                    <p><strong>Venue:</strong> {{ event.location }}</p>
+                    <hr>
+                    <h4>Selected Seat Details:</h4>
+                    <p><strong>Section:</strong> {{ section }}</p>
+                    <p><strong>Category:</strong> {{ section_type }}</p>
+                    <p><strong>Price:</strong> ${{ price }}</p>
+                    
+                    <form action="{{ url_for('process_booking') }}" method="POST">
+                        <input type="hidden" name="event_id" value="{{ event._id }}">
+                        <input type="hidden" name="section" value="{{ section }}">
+                        <input type="hidden" name="price" value="{{ price }}">
+                        
+                        <div class="form-group mb-3">
+                            <label for="quantity">Number of Tickets:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" max="4" value="1">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                        <a href="{{ url_for('booking_concert_seat', event_id=event._id) }}" class="btn btn-secondary">Back to Seat Selection</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

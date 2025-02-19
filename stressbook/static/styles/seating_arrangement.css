@@ -1,0 +1,16 @@
+	/* Styling for clickable seating areas */
+    .seat { cursor: pointer; transition: fill 0.3s; }
+    .seat:hover { fill: #FFD700; } /* Highlight on hover */
+    .selected { fill: #4CAF50; } /* Color when selected */
+    
+    /* Tooltip for displaying seat information */
+    #tooltip {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        display: none;
+        pointer-events: none;
+    }
